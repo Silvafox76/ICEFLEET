@@ -1,17 +1,17 @@
-# 🚛 ICE Fleet Platform
+# ❄️ Ice Mitigation Services Fleet Platform
 
 <div align="center">
 
-![ICE Fleet Platform](https://img.shields.io/badge/ICE_Fleet-Platform-blue?style=for-the-badge&logo=truck&logoColor=white)
+![Ice Mitigation Services](https://img.shields.io/badge/Ice_Mitigation-Services-red?style=for-the-badge&logo=snowflake&logoColor=white)
 [![Next.js](https://img.shields.io/badge/Next.js-14.0-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.0-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
 [![Prisma](https://img.shields.io/badge/Prisma-5.0-2D3748?style=for-the-badge&logo=prisma&logoColor=white)](https://www.prisma.io/)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
 
-**A comprehensive fleet management system designed specifically for ICE detention facility transportation operations**
+**🍁 Canadian Fleet Management System for Restoration & Emergency Services | Serving the Greater Toronto Area from Whitby, Ontario**
 
-[Demo](https://icefleet.vercel.app) · [Documentation](#documentation) · [Report Bug](https://github.com/Silvafox76/ICEFLEET/issues) · [Request Feature](https://github.com/Silvafox76/ICEFLEET/issues)
+[Demo](https://icemitigation.ca) · [Documentation](#documentation) · [Report Bug](https://github.com/Silvafox76/ICEFLEET/issues) · [Request Feature](https://github.com/Silvafox76/ICEFLEET/issues)
 
 </div>
 
@@ -19,83 +19,105 @@
 
 ## 🌟 Overview
 
-ICE Fleet Platform is a state-of-the-art fleet management solution built to streamline transportation operations for ICE detention facilities. This enterprise-grade application provides real-time tracking, comprehensive compliance management, and intelligent maintenance scheduling to ensure safe, efficient, and compliant detainee transportation.
+Ice Mitigation Services Fleet Platform is a made-in-Canada management solution designed specifically for Canadian restoration, cleaning, and emergency response companies. Based in Whitby, Ontario, and serving the Greater Toronto Area (GTA), this enterprise-grade application streamlines fleet operations, job scheduling, equipment tracking, and team coordination to deliver rapid response and quality service across Southern Ontario for water damage, fire damage, mold remediation, winter storm damage, and other restoration needs.
 
 ### 🎯 Key Highlights
 
-- **Real-Time Fleet Tracking** - Monitor all vehicles and assets in real-time
-- **Compliance Automation** - Stay ahead of federal and state regulations
-- **Predictive Maintenance** - AI-powered maintenance scheduling
-- **Driver Management** - Complete driver certification and performance tracking
-- **Security First** - Built with enterprise-grade security standards
-- **Mobile Responsive** - Access from any device, anywhere
+- **Emergency Response Dispatch** - 24/7 rapid response across the GTA and Durham Region
+- **Fleet & Equipment Tracking** - Monitor all vehicles, equipment, and supplies in real-time
+- **Job Management System** - Complete project lifecycle from dispatch to billing
+- **Team Coordination** - Crew scheduling and certification tracking
+- **Client Portal** - Real-time updates and documentation for customers
+- **Canadian Compliance** - IICRC, Health Canada, WSIB, and provincial regulatory compliance
 
 ## ✨ Features
 
-### 🚗 Fleet Management
-- **Vehicle Tracking & Status**
-  - Real-time GPS tracking
-  - Vehicle status monitoring (Active, Maintenance, Out of Service)
-  - Mileage tracking and fuel consumption
-  - Vehicle assignment and scheduling
+### 🚚 Fleet & Equipment Management
+- **Service Vehicle Tracking**
+  - Real-time GPS tracking for all response vehicles
+  - Equipment inventory per vehicle
+  - Maintenance scheduling and logs
+  - Fuel consumption and route optimization
 
-- **Trailer Management**
-  - Equipment tracking and status
-  - Capacity management
-  - Maintenance scheduling
-  - DOT compliance tracking
+- **Equipment Management**
+  - Dehumidifiers, air movers, and air scrubbers tracking
+  - Equipment availability and deployment status
+  - Calibration and certification schedules
+  - Rental equipment coordination
 
-### 👥 Driver Management
-- **Comprehensive Driver Profiles**
-  - License and certification tracking
-  - Medical card expiration alerts
-  - Training history and compliance
-  - Performance metrics and scoring
+### 🏠 Job & Project Management
+- **Emergency Dispatch System**
+  - 24/7 call center integration
+  - Automated crew dispatch based on location
+  - Priority-based job queuing
+  - Real-time job status updates
 
-- **Assignment System**
-  - Automated driver-vehicle pairing
-  - Schedule management
-  - Route optimization
-  - Hours of service tracking
+- **Restoration Projects**
+  - Water damage mitigation tracking
+  - Fire and smoke damage restoration
+  - Mold remediation projects
+  - Winter ice dam and freeze damage
+  - Biohazard cleanup coordination
+  - Contents restoration and pack-out services
+  - Commercial and residential services
+
+### 👷 Crew Management
+- **Technician Profiles**
+  - IICRC certification tracking
+  - Training history and specializations
+  - Availability scheduling
+  - Performance metrics and reviews
+
+- **Team Dispatch**
+  - Skill-based crew assignment
+  - On-call rotation management
+  - Time and attendance tracking
+  - Overtime and emergency pay calculation
 
 ### 📋 Compliance & Documentation
-- **Automated Compliance Tracking**
-  - DOT regulations monitoring
-  - State and federal compliance
-  - Automatic renewal reminders
-  - Document management system
+- **Canadian Industry Certifications**
+  - IICRC certification management
+  - Health Canada compliance
+  - WSIB (Workplace Safety and Insurance Board) requirements
+  - Ontario Ministry of Labour standards
+  - Provincial licensing and permits
 
-- **Alert System**
-  - Expiration notifications
-  - Maintenance due alerts
-  - Compliance warnings
-  - Custom alert configurations
+- **Job Documentation**
+  - Photo and video documentation
+  - Moisture readings and mapping
+  - Psychrometric calculations
+  - Insurance claim documentation
+  - Customer authorization forms
 
-### 🔧 Maintenance Management
-- **Preventive Maintenance**
-  - Scheduled service tracking
-  - Maintenance history logs
-  - Cost tracking and analysis
-  - Vendor management
+### 💼 Client Management
+- **Customer Portal**
+  - Real-time job progress updates
+  - Document and photo access
+  - Digital signature collection
+  - Communication history in English and French
+  - Insurance claim assistance (all major Canadian insurers)
 
-- **Service Records**
-  - Digital maintenance logs
-  - Parts inventory tracking
-  - Warranty management
-  - Service provider integration
+- **Billing & Invoicing**
+  - Xactimate integration
+  - Canadian insurance company billing
+  - Direct customer billing with HST/GST
+  - Interac e-Transfer and payment processing
+  - Collections management
 
 ### 📊 Analytics & Reporting
-- **Dashboard Analytics**
-  - Fleet utilization metrics
-  - Cost per mile analysis
-  - Driver performance scores
-  - Compliance rate tracking
+- **Business Intelligence**
+  - Revenue by service type
+  - Response time metrics
+  - Customer satisfaction scores
+  - Equipment utilization rates
+  - Technician productivity
 
 - **Custom Reports**
-  - Exportable reports (PDF, Excel)
-  - Scheduled report generation
-  - Historical data analysis
-  - Predictive analytics
+  - Job completion reports
+  - Insurance documentation
+  - Compliance reports
+  - Financial statements
+  - Equipment ROI analysis
 
 ## 🚀 Quick Start
 
@@ -126,7 +148,7 @@ ICE Fleet Platform is a state-of-the-art fleet management solution built to stre
    
    Update `.env` with your configuration:
    ```env
-   DATABASE_URL="postgresql://user:password@localhost:5432/ice_fleet"
+   DATABASE_URL="postgresql://user:password@localhost:5432/ice_mitigation"
    NEXTAUTH_SECRET="your-secret-key"
    NEXTAUTH_URL="http://localhost:3000"
    ```
@@ -160,13 +182,14 @@ ICE Fleet Platform is a state-of-the-art fleet management solution built to stre
 - **Database:** [PostgreSQL](https://www.postgresql.org/)
 - **ORM:** [Prisma](https://www.prisma.io/)
 - **Authentication:** NextAuth.js
-- **File Storage:** AWS S3 (optional)
+- **File Storage:** AWS S3 for documentation
+- **SMS/Email:** Twilio/SendGrid integration
 
 ### DevOps
 - **Deployment:** Vercel / Railway
 - **CI/CD:** GitHub Actions
 - **Monitoring:** Vercel Analytics
-- **Error Tracking:** Sentry (optional)
+- **Error Tracking:** Sentry
 
 ## 📁 Project Structure
 
@@ -175,10 +198,11 @@ ICEFLEET/
 ├── app/                    # Next.js application
 │   ├── app/               # App router pages
 │   │   ├── api/          # API routes
-│   │   ├── compliance/   # Compliance module
-│   │   ├── drivers/      # Driver management
-│   │   ├── fleet/        # Fleet management
-│   │   └── maintenance/  # Maintenance module
+│   │   ├── dispatch/     # Emergency dispatch (GTA coverage)
+│   │   ├── jobs/         # Job management
+│   │   ├── fleet/        # Fleet tracking
+│   │   ├── crew/         # Crew management
+│   │   └── clients/      # Client portal (bilingual)
 │   ├── components/        # React components
 │   │   ├── ui/           # UI components
 │   │   └── features/     # Feature components
@@ -196,35 +220,43 @@ ICEFLEET/
 
 #### Fleet Management
 ```typescript
-GET    /api/fleet/vehicles     # List all vehicles
+GET    /api/fleet/vehicles     # List all service vehicles
 POST   /api/fleet/vehicles     # Add new vehicle
-PUT    /api/fleet/vehicles/:id # Update vehicle
-DELETE /api/fleet/vehicles/:id # Remove vehicle
+PUT    /api/fleet/vehicles/:id # Update vehicle status
+GET    /api/fleet/equipment    # List all equipment
 
-GET    /api/fleet/trailers     # List all trailers
-POST   /api/fleet/trailers     # Add new trailer
+GET    /api/fleet/tracking     # Real-time GPS tracking
+POST   /api/fleet/dispatch     # Dispatch vehicle to job
 ```
 
-#### Driver Management
+#### Job Management
 ```typescript
-GET    /api/drivers            # List all drivers
-POST   /api/drivers            # Add new driver
-PUT    /api/drivers/:id        # Update driver
-GET    /api/drivers/:id/docs   # Get driver documents
+GET    /api/jobs               # List all jobs
+POST   /api/jobs               # Create new job
+PUT    /api/jobs/:id           # Update job status
+GET    /api/jobs/:id/photos    # Get job documentation
+
+POST   /api/dispatch/emergency # Emergency dispatch
+GET    /api/dispatch/queue     # View dispatch queue
 ```
 
-#### Compliance
+#### Crew Management
 ```typescript
-GET    /api/compliance/status   # Compliance overview
-GET    /api/compliance/alerts   # Active alerts
-POST   /api/compliance/renewals # Schedule renewal
+GET    /api/crew               # List all technicians
+POST   /api/crew               # Add new technician
+GET    /api/crew/:id/certs     # Get certifications
+POST   /api/crew/schedule      # Schedule crew
+
+GET    /api/crew/oncall        # On-call rotation
+POST   /api/crew/dispatch      # Dispatch crew to job
 ```
 
-#### Maintenance
+#### Client Portal
 ```typescript
-GET    /api/maintenance/records    # Maintenance history
-POST   /api/maintenance/schedule   # Schedule service
-PUT    /api/maintenance/complete   # Mark as complete
+GET    /api/clients/:id/jobs   # Client's job history
+GET    /api/clients/:id/docs   # Job documentation
+POST   /api/clients/signature  # Collect e-signature
+GET    /api/clients/billing    # Billing information
 ```
 
 ## 🛠️ Development
@@ -237,8 +269,8 @@ npm run build      # Build for production
 npm run start      # Start production server
 npm run lint       # Run ESLint
 npm run test       # Run tests
-npm run seed       # Seed database
-npm run migrate    # Run migrations
+npm run seed       # Seed database with sample data
+npm run migrate    # Run database migrations
 ```
 
 ### Environment Variables
@@ -248,9 +280,13 @@ npm run migrate    # Run migrations
 | `DATABASE_URL` | PostgreSQL connection string | Yes |
 | `NEXTAUTH_SECRET` | Authentication secret | Yes |
 | `NEXTAUTH_URL` | Application URL | Yes |
-| `AWS_ACCESS_KEY_ID` | AWS access key | No |
-| `AWS_SECRET_ACCESS_KEY` | AWS secret | No |
-| `SENTRY_DSN` | Sentry error tracking | No |
+| `AWS_ACCESS_KEY_ID` | AWS access key for S3 | Yes |
+| `AWS_SECRET_ACCESS_KEY` | AWS secret | Yes |
+| `TWILIO_ACCOUNT_SID` | Twilio for SMS (Canadian numbers) | No |
+| `SENDGRID_API_KEY` | SendGrid for email | No |
+| `XACTIMATE_API_KEY` | Xactimate integration | No |
+| `CANADA_POST_API_KEY` | Address validation | No |
+| `INTERAC_MERCHANT_ID` | Payment processing | No |
 
 ## 🧪 Testing
 
@@ -270,18 +306,20 @@ npm run test:coverage
 
 ## 📈 Performance
 
-- **Lighthouse Score:** 95+ across all metrics
+- **Response Time:** < 30 minutes within GTA/Durham Region
 - **Load Time:** < 2s initial load
-- **Time to Interactive:** < 3s
-- **Bundle Size:** < 200KB gzipped
+- **Mobile Optimized:** Full functionality on mobile devices
+- **Offline Mode:** Critical features work offline
+- **Coverage Area:** 100km radius from Whitby, ON
 
 ## 🔒 Security
 
-- **Authentication:** Multi-factor authentication support
-- **Authorization:** Role-based access control (RBAC)
-- **Data Encryption:** AES-256 encryption at rest
-- **API Security:** Rate limiting and CORS protection
-- **Compliance:** GDPR and CCPA compliant
+- **Authentication:** Multi-factor authentication
+- **Authorization:** Role-based access control
+- **Data Encryption:** AES-256 encryption
+- **PIPEDA Compliant:** Canadian privacy regulations
+- **PCI DSS Compliant:** For payment processing
+- **Provincial Privacy Laws:** Ontario PHIPA compliance
 
 ## 🚢 Deployment
 
@@ -297,10 +335,10 @@ npm run test:coverage
 
 ```bash
 # Build the image
-docker build -t ice-fleet .
+docker build -t ice-mitigation .
 
 # Run the container
-docker run -p 3000:3000 ice-fleet
+docker run -p 3000:3000 ice-mitigation
 ```
 
 ## 🤝 Contributing
@@ -331,14 +369,25 @@ For support, contact [FoxOnAI.com](https://FoxOnAI.com) or open an issue on [Git
 
 ## 🗺️ Roadmap
 
-- [ ] Mobile application (React Native)
-- [ ] Advanced route optimization
-- [ ] AI-powered predictive maintenance
-- [ ] Integration with third-party GPS providers
-- [ ] Multi-language support
-- [ ] Advanced analytics dashboard
-- [ ] Blockchain-based compliance tracking
-- [ ] IoT sensor integration
+- [ ] Mobile app for field technicians (iOS/Android)
+- [ ] AI-powered damage assessment
+- [ ] Drone integration for roof and ice dam inspections
+- [ ] Thermal imaging integration
+- [ ] Augmented reality for moisture mapping
+- [ ] Automated Canadian insurance claim processing
+- [ ] Winter storm response optimization
+- [ ] French language support (full bilingual)
+- [ ] Integration with Canadian weather services
+- [ ] Customer mobile app with push notifications
+- [ ] Voice-activated dispatch system (English/French)
+
+## 📍 Service Areas
+
+**Primary Service Area:** Whitby, Oshawa, Ajax, Pickering, Brooklin, Port Perry
+
+**Extended Coverage:** Toronto, Scarborough, North York, Markham, Richmond Hill, Vaughan, Mississauga, Brampton
+
+**Emergency Response:** Available 24/7/365 throughout Durham Region and the GTA
 
 ---
 
@@ -346,7 +395,9 @@ For support, contact [FoxOnAI.com](https://FoxOnAI.com) or open an issue on [Git
 
 **Built with ❤️ by [FoxOnAI.com](https://FoxOnAI.com)**
 
-🦊 **Powered by AI Innovation**
+🦊 **Proudly Canadian AI Innovation** 🍁
+
+**Serving Ontario businesses with cutting-edge technology solutions**
 
 [FoxOnAI.com](https://FoxOnAI.com) · [Contact](https://FoxOnAI.com/contact) · [Portfolio](https://FoxOnAI.com/portfolio) · [AI Solutions](https://FoxOnAI.com/solutions)
 
