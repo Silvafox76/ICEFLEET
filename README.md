@@ -2,6 +2,14 @@
 
 <div align="center">
 
+## 🚀 Deploy in 2 Minutes!
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Silvafox76/ICEFLEET&env=DATABASE_URL&envDescription=Just%20need%20a%20PostgreSQL%20database%20URL&project-name=ice-fleet&repository-name=ice-fleet)
+
+**👆 Click to deploy instantly! Auto-deploys on every GitHub push.**
+
+---
+
 ![ICE FLEET](https://img.shields.io/badge/ICE_FLEET-Fleet_Management-blue?style=for-the-badge&logo=truck&logoColor=white)
 ![ICEHUB Ecosystem](https://img.shields.io/badge/ICEHUB-Ecosystem-red?style=for-the-badge&logo=snowflake&logoColor=white)
 [![Next.js](https://img.shields.io/badge/Next.js-14.0-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
@@ -13,7 +21,7 @@
 
 **Part of the comprehensive Ice Mitigation Services technology stack serving Whitby, Ontario and the Greater Toronto Area**
 
-[ICEHUB Overview](#icehub-ecosystem) · [ICE FLEET Features](#features) · [Integration](#integration) · [Documentation](#documentation)
+[Quick Deploy](DEPLOY_NOW.md) · [ICEHUB Overview](#icehub-ecosystem) · [Features](#features) · [Documentation](#documentation)
 
 </div>
 
