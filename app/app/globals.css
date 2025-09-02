@@ -1,0 +1,189 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* ICE Fleet Management Brand Colors */
+  --primary: #0B1F3A;
+  --primary-foreground: #ffffff;
+  --accent: #2F80FF;
+  --accent-foreground: #ffffff;
+  --success: #11A36A;
+  --success-foreground: #ffffff;
+  --warning: #F59E0B;
+  --warning-foreground: #ffffff;
+  --danger: #D92D20;
+  --danger-foreground: #ffffff;
+  
+  /* Semantic colors */
+  --background: #ffffff;
+  --foreground: #0B1F3A;
+  --card: #ffffff;
+  --card-foreground: #0B1F3A;
+  --popover: #ffffff;
+  --popover-foreground: #0B1F3A;
+  --muted: #f8fafc;
+  --muted-foreground: #64748b;
+  --border: #e2e8f0;
+  --input: #e2e8f0;
+  --ring: #2F80FF;
+  
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: #0B1F3A;
+  --foreground: #ffffff;
+  --card: #1e293b;
+  --card-foreground: #ffffff;
+  --popover: #1e293b;
+  --popover-foreground: #ffffff;
+  --muted: #334155;
+  --muted-foreground: #94a3b8;
+  --border: #334155;
+  --input: #334155;
+  --ring: #2F80FF;
+}
+
+* {
+  border-color: hsl(var(--border));
+}
+
+body {
+  color: hsl(var(--foreground));
+  background: hsl(var(--background));
+  font-feature-settings: "rlig" 1, "calt" 1;
+}
+
+@layer components {
+  .status-green {
+    @apply bg-green-100 text-green-800 border border-green-200;
+  }
+  
+  .status-amber {
+    @apply bg-yellow-100 text-yellow-800 border border-yellow-200;
+  }
+  
+  .status-red {
+    @apply bg-red-100 text-red-800 border border-red-200;
+  }
+  
+  .animated-counter {
+    animation: countUp 2s ease-out;
+  }
+  
+  @keyframes countUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: hsl(var(--muted));
+}
+
+::-webkit-scrollbar-thumb {
+  background: hsl(var(--muted-foreground));
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--accent));
+}
+
+/* Neon Glow Effect for ICE Fleet Logo */
+@keyframes neon-pulse {
+  0%, 100% {
+    text-shadow: 
+      0 0 5px #0EA5E9,
+      0 0 10px #0EA5E9,
+      0 0 15px #0EA5E9,
+      0 0 20px #0284C7,
+      0 0 35px #0284C7,
+      0 0 40px #0284C7,
+      0 0 50px #0284C7,
+      0 0 75px #0284C7;
+    filter: brightness(1.2);
+  }
+  50% {
+    text-shadow: 
+      0 0 10px #0EA5E9,
+      0 0 20px #0EA5E9,
+      0 0 30px #0EA5E9,
+      0 0 40px #0284C7,
+      0 0 55px #0284C7,
+      0 0 60px #0284C7,
+      0 0 70px #0284C7,
+      0 0 100px #0284C7;
+    filter: brightness(1.5);
+  }
+}
+
+@keyframes neon-flicker {
+  0%, 100% {
+    opacity: 1;
+  }
+  41.99% {
+    opacity: 1;
+  }
+  42% {
+    opacity: 0.8;
+  }
+  43% {
+    opacity: 1;
+  }
+  43.01% {
+    opacity: 0.8;
+  }
+  43.02% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  85.01% {
+    opacity: 0.7;
+  }
+  85.02% {
+    opacity: 1;
+  }
+}
+
+.neon-text {
+  color: #0EA5E9;
+  font-weight: bold;
+  animation: 
+    neon-pulse 2s ease-in-out infinite,
+    neon-flicker 5s linear infinite;
+  letter-spacing: 0.05em;
+}
+
+.neon-text:hover {
+  animation: 
+    neon-pulse 0.5s ease-in-out infinite,
+    neon-flicker 2s linear infinite;
+}
+
+/* Footer Styles */
+.footer-credit {
+  background: linear-gradient(to right, #0B1F3A, #1e3a5a);
+  border-top: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.footer-link {
+  color: #60A5FA;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.footer-link:hover {
+  color: #93C5FD;
+  text-shadow: 0 0 10px rgba(96, 165, 250, 0.5);
+}

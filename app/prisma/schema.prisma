@@ -1,0 +1,228 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+// User Authentication Models
+model User {
+  id              String   @id @default(cuid())
+  email           String   @unique
+  name            String?
+  hashedPassword  String?
+  role            String   @default("DRIVER")
+  employeeId      String?  @unique
+  phone           String?
+  department      String?
+  branch          String?
+  isActive        Boolean  @default(true)
+  lastLogin       DateTime?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@map("users")
+}
+
+// Fleet Registry Models
+model Vehicle {
+  id              String   @id @default(cuid())
+  vin             String   @unique
+  make            String
+  model           String
+  year            Int
+  licensePlate    String   @unique
+  towingCapacityKg Int?    // in kg
+  hitchClass      Int?     // Class 1, 2, 3, 4, 5
+  hasElectricBrakeController Boolean @default(false)
+  status          String   @default("ACTIVE")
+  odometer        Int      @default(0)
+  fuelType        String
+  province        String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // Relations
+  assignments     Assignment[]
+  maintenanceRecords MaintenanceRecord[]
+  complianceDocuments ComplianceDocument[]
+  compatibilityChecks CompatibilityCheck[]
+
+  @@map("vehicles")
+}
+
+model Trailer {
+  id                    String   @id @default(cuid())
+  serialNumber          String   @unique
+  type                  String
+  requiredTowingCapacityKg Int?  // in kg
+  requiredHitchClass    Int?     // Class 1, 2, 3, 4, 5
+  hasElectricBrakes     Boolean  @default(false)
+  requiresElectricBrakeController Boolean @default(false)
+  status                String   @default("ACTIVE")
+  licensePlate          String?  @unique
+  province              String
+  createdAt             DateTime @default(now())
+  updatedAt             DateTime @updatedAt
+
+  // Relations
+  assignments           Assignment[]
+  maintenanceRecords   MaintenanceRecord[]
+  complianceDocuments  ComplianceDocument[]
+  compatibilityChecks  CompatibilityCheck[]
+
+  @@map("trailers")
+}
+
+// Driver Management Models
+model Driver {
+  id                String   @id @default(cuid())
+  employeeId        String   @unique
+  firstName         String
+  lastName          String
+  email             String   @unique
+  phone             String
+  licenseNumber     String   @unique
+  licenseClass      String   // G, DZ, AZ, etc.
+  licenseExpiry     DateTime
+  endorsements      String   // Stored as JSON string for SQLite
+  status            String   @default("ACTIVE")
+  province          String
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  // Relations
+  assignments       Assignment[]
+  crewAssignments   CrewMember[]
+
+  @@map("drivers")
+}
+
+model CrewMember {
+  id           String @id @default(cuid())
+  assignmentId String
+  driverId     String
+  role         String @default("CREW")
+  createdAt    DateTime @default(now())
+
+  // Relations
+  assignment   Assignment @relation(fields: [assignmentId], references: [id], onDelete: Cascade)
+  driver       Driver @relation(fields: [driverId], references: [id])
+
+  @@unique([assignmentId, driverId])
+  @@map("crew_members")
+}
+
+// Assignment System Models
+model Assignment {
+  id              String   @id @default(cuid())
+  jobNumber       String   @unique
+  description     String
+  location        String
+  startDate       DateTime
+  endDate         DateTime?
+  status          String   @default("SCHEDULED")
+  vehicleId       String?
+  trailerId       String?
+  leadDriverId    String
+  priority        String   @default("MEDIUM")
+  estimatedHours  Int?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // Relations
+  vehicle         Vehicle? @relation(fields: [vehicleId], references: [id])
+  trailer         Trailer? @relation(fields: [trailerId], references: [id])
+  leadDriver      Driver @relation(fields: [leadDriverId], references: [id])
+  crewMembers     CrewMember[]
+
+  @@map("assignments")
+}
+
+// Compliance Management Models
+model ComplianceDocument {
+  id            String   @id @default(cuid())
+  type          String
+  documentNumber String
+  issueDate     DateTime
+  expiryDate    DateTime
+  status        String   @default("VALID")
+  vehicleId     String?
+  trailerId     String?
+  cloudStoragePath String?
+  notes         String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  // Relations
+  vehicle       Vehicle? @relation(fields: [vehicleId], references: [id])
+  trailer       Trailer? @relation(fields: [trailerId], references: [id])
+
+  @@map("compliance_documents")
+}
+
+// Maintenance Management Models
+model MaintenanceRecord {
+  id              String   @id @default(cuid())
+  type            String
+  description     String
+  scheduledDate   DateTime?
+  completedDate   DateTime?
+  odometer        Int?
+  cost            Float?
+  status          String   @default("SCHEDULED")
+  vehicleId       String?
+  trailerId       String?
+  serviceProvider String?
+  workOrderNumber String?
+  notes           String?
+  cloudStoragePath String?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // Relations
+  vehicle         Vehicle? @relation(fields: [vehicleId], references: [id])
+  trailer         Trailer? @relation(fields: [trailerId], references: [id])
+
+  @@map("maintenance_records")
+}
+
+// Form Submission Model
+model FormSubmission {
+  id           String   @id @default(cuid())
+  formType     String
+  name         String
+  email        String
+  subject      String?
+  message      String
+  status       String   @default("new")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  @@map("form_submissions")
+}
+
+// Compatibility Check Model
+model CompatibilityCheck {
+  id                String   @id @default(cuid())
+  vehicleId         String
+  trailerId         String
+  status            String   // PASS, WARNING, FAIL
+  canTow            Boolean
+  capacityMarginKg  Int
+  issues            String   // JSON string for SQLite
+  warnings          String   // JSON string for SQLite
+  recommendations   String   // JSON string for SQLite
+  province          String
+  checkedAt         DateTime @default(now())
+  checkedBy         String?
+  notes             String?
+
+  // Relations
+  vehicle           Vehicle @relation(fields: [vehicleId], references: [id])
+  trailer           Trailer @relation(fields: [trailerId], references: [id])
+
+  @@map("compatibility_checks")
+}

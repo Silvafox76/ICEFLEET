@@ -1,0 +1,23 @@
+{
+  "$schema": "https://railway.app/railway.schema.json",
+  "build": {
+    "builder": "NIXPACKS",
+    "buildCommand": "npm install --legacy-peer-deps && npx prisma generate && npx prisma migrate deploy && npm run build"
+  },
+  "deploy": {
+    "numReplicas": 1,
+    "startCommand": "npm start",
+    "restartPolicyType": "ON_FAILURE",
+    "restartPolicyMaxRetries": 10,
+    "healthcheckPath": "/",
+    "healthcheckTimeout": 30
+  },
+  "services": [
+    {
+      "name": "ice-fleet-platform",
+      "source": {
+        "repo": "app"
+      }
+    }
+  ]
+}
