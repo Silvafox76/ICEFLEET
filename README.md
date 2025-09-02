@@ -319,6 +319,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 Acknowledgments
 
+- Developed by [FoxOnAI.com](https://FoxOnAI.com) - AI-Powered Solutions
 - Built with [Next.js](https://nextjs.org/)
 - UI components from [Shadcn/ui](https://ui.shadcn.com/)
 - Icons from [Lucide](https://lucide.dev/)
@@ -326,7 +327,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Support
 
-For support, email support@icefleet.com or open an issue on [GitHub](https://github.com/Silvafox76/ICEFLEET/issues).
+For support, contact [FoxOnAI.com](https://FoxOnAI.com) or open an issue on [GitHub](https://github.com/Silvafox76/ICEFLEET/issues).
 
 ## 🗺️ Roadmap
 
@@ -343,8 +344,10 @@ For support, email support@icefleet.com or open an issue on [GitHub](https://git
 
 <div align="center">
 
-**Built with ❤️ by the ICE Fleet Team**
+**Built with ❤️ by [FoxOnAI.com](https://FoxOnAI.com)**
 
-[Website](https://icefleet.com) · [Documentation](https://docs.icefleet.com) · [Twitter](https://twitter.com/icefleet) · [LinkedIn](https://linkedin.com/company/icefleet)
+🦊 **Powered by AI Innovation**
+
+[FoxOnAI.com](https://FoxOnAI.com) · [Contact](https://FoxOnAI.com/contact) · [Portfolio](https://FoxOnAI.com/portfolio) · [AI Solutions](https://FoxOnAI.com/solutions)
 
 </div>
