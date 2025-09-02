@@ -2,7 +2,7 @@
 
 <div align="center">
 
-## 🚀 Deploy in 2 Minutes!
+## 🚀 Deploy in 2 Minutes! (Live Now!)
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Silvafox76/ICEFLEET&env=DATABASE_URL&envDescription=Just%20need%20a%20PostgreSQL%20database%20URL&project-name=ice-fleet&repository-name=ice-fleet)
 
