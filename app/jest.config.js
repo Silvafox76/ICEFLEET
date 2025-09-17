@@ -40,6 +40,6 @@ module.exports = {
     }]
   },
   transformIgnorePatterns: [
-    'node_modules/(?!(lucide-react)/)'
+    'node_modules/(?!(lucide-react|@testing-library)/)'
   ]
 }
