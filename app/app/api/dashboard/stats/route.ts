@@ -8,9 +8,13 @@ export async function GET() {
     const stats = await getDbStats();
     return NextResponse.json(stats);
   } catch (error) {
-    // Database not available, use mock data
-    console.log('Using mock dashboard stats - database not available');
-    return NextResponse.json(mockDashboardStats);
+    if (process.env.NODE_ENV !== 'production') {
+      // Database not available, use mock data in non-production
+      console.log('Using mock dashboard stats - database not available');
+      return NextResponse.json(mockDashboardStats);
+    }
+    console.error('Dashboard stats error:', error);
+    return NextResponse.json({ error: 'Database unavailable' }, { status: 500 });
   }
 }
 

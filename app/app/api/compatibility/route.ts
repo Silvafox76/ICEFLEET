@@ -72,9 +72,9 @@ export async function GET(request: NextRequest) {
         status: compatibilityResult.status,
         canTow: compatibilityResult.canTow,
         capacityMarginKg: compatibilityResult.capacityMarginKg,
-        issues: compatibilityResult.issues,
-        warnings: compatibilityResult.warnings,
-        recommendations: compatibilityResult.recommendations,
+        issues: JSON.stringify(compatibilityResult.issues),
+        warnings: JSON.stringify(compatibilityResult.warnings),
+        recommendations: JSON.stringify(compatibilityResult.recommendations),
         province,
         checkedAt: new Date()
       }

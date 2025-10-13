@@ -45,9 +45,10 @@ export async function POST(request: Request) {
       data: {
         serialNumber: body.serialNumber,
         type: body.type,
-        requiredTowingCapacity: parseInt(body.requiredTowingCapacity),
-        requiredHitchClass: body.requiredHitchClass,
-        hasBrakes: body.hasBrakes === true,
+        requiredTowingCapacityKg: body.requiredTowingCapacityKg ? parseInt(body.requiredTowingCapacityKg) : null,
+        requiredHitchClass: body.requiredHitchClass ? parseInt(body.requiredHitchClass) : null,
+        hasElectricBrakes: body.hasElectricBrakes || false,
+        requiresElectricBrakeController: body.requiresElectricBrakeController || false,
         licensePlate: body.licensePlate || null,
         province: body.province,
       }

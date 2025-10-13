@@ -27,8 +27,9 @@ async function main() {
         model: 'Silverado 2500HD',
         year: 2023,
         licensePlate: 'ABC123',
-        towingCapacity: 4500,
-        hitchClass: 'Class IV',
+        towingCapacityKg: 4500,
+        hitchClass: 4,
+        hasElectricBrakeController: true,
         status: 'ACTIVE',
         odometer: 15234,
         fuelType: 'Gasoline',
@@ -42,8 +43,9 @@ async function main() {
         model: 'F-350 Super Duty',
         year: 2022,
         licensePlate: 'DEF456',
-        towingCapacity: 5900,
-        hitchClass: 'Class V',
+        towingCapacityKg: 5900,
+        hitchClass: 5,
+        hasElectricBrakeController: true,
         status: 'ACTIVE',
         odometer: 28445,
         fuelType: 'Diesel',
@@ -57,8 +59,9 @@ async function main() {
         model: '3500 Crew Cab',
         year: 2021,
         licensePlate: 'GHI789',
-        towingCapacity: 6800,
-        hitchClass: 'Class V',
+        towingCapacityKg: 6800,
+        hitchClass: 5,
+        hasElectricBrakeController: true,
         status: 'ACTIVE',
         odometer: 45678,
         fuelType: 'Diesel',
@@ -72,8 +75,9 @@ async function main() {
         model: 'Sierra 2500HD',
         year: 2020,
         licensePlate: 'JKL012',
-        towingCapacity: 4200,
-        hitchClass: 'Class IV',
+        towingCapacityKg: 4200,
+        hitchClass: 4,
+        hasElectricBrakeController: true,
         status: 'MAINTENANCE',
         odometer: 67890,
         fuelType: 'Gasoline',
@@ -87,8 +91,9 @@ async function main() {
         model: 'F-450 Super Duty',
         year: 2024,
         licensePlate: 'MNO345',
-        towingCapacity: 7300,
-        hitchClass: 'Class V',
+        towingCapacityKg: 7300,
+        hitchClass: 5,
+        hasElectricBrakeController: true,
         status: 'ACTIVE',
         odometer: 5430,
         fuelType: 'Diesel',
@@ -102,8 +107,9 @@ async function main() {
         model: 'Tahoe',
         year: 2023,
         licensePlate: 'PQR678',
-        towingCapacity: 3800,
-        hitchClass: 'Class III',
+        towingCapacityKg: 3800,
+        hitchClass: 3,
+        hasElectricBrakeController: false,
         status: 'ACTIVE',
         odometer: 12456,
         fuelType: 'Gasoline',
@@ -117,8 +123,9 @@ async function main() {
         model: 'Ridgeline',
         year: 2022,
         licensePlate: 'STU901',
-        towingCapacity: 2300,
-        hitchClass: 'Class III',
+        towingCapacityKg: 2300,
+        hitchClass: 3,
+        hasElectricBrakeController: false,
         status: 'ACTIVE',
         odometer: 34567,
         fuelType: 'Gasoline',
@@ -132,8 +139,9 @@ async function main() {
         model: '1500 Classic',
         year: 2019,
         licensePlate: 'VWX234',
-        towingCapacity: 3900,
-        hitchClass: 'Class IV',
+        towingCapacityKg: 3900,
+        hitchClass: 4,
+        hasElectricBrakeController: true,
         status: 'OUT_OF_SERVICE',
         odometer: 89234,
         fuelType: 'Gasoline',
@@ -149,9 +157,10 @@ async function main() {
       data: {
         serialNumber: 'ENC2023001',
         type: 'ENCLOSED',
-        requiredTowingCapacity: 2700,
-        requiredHitchClass: 'Class IV',
-        hasBrakes: true,
+        requiredTowingCapacityKg: 2700,
+        requiredHitchClass: 4,
+        hasElectricBrakes: true,
+        requiresElectricBrakeController: true,
         status: 'ACTIVE',
         licensePlate: 'TRL001',
         province: 'ON'
@@ -161,9 +170,10 @@ async function main() {
       data: {
         serialNumber: 'ENC2023002',
         type: 'ENCLOSED',
-        requiredTowingCapacity: 3200,
-        requiredHitchClass: 'Class IV',
-        hasBrakes: true,
+        requiredTowingCapacityKg: 3200,
+        requiredHitchClass: 4,
+        hasElectricBrakes: true,
+        requiresElectricBrakeController: true,
         status: 'ACTIVE',
         licensePlate: 'TRL002',
         province: 'ON'
@@ -173,9 +183,10 @@ async function main() {
       data: {
         serialNumber: 'FLT2022001',
         type: 'FLATBED',
-        requiredTowingCapacity: 4100,
-        requiredHitchClass: 'Class V',
-        hasBrakes: true,
+        requiredTowingCapacityKg: 4100,
+        requiredHitchClass: 5,
+        hasElectricBrakes: true,
+        requiresElectricBrakeController: true,
         status: 'ACTIVE',
         licensePlate: 'TRL003',
         province: 'ON'
@@ -185,9 +196,10 @@ async function main() {
       data: {
         serialNumber: 'EQP2023001',
         type: 'EQUIPMENT',
-        requiredTowingCapacity: 5200,
-        requiredHitchClass: 'Class V',
-        hasBrakes: true,
+        requiredTowingCapacityKg: 5200,
+        requiredHitchClass: 5,
+        hasElectricBrakes: true,
+        requiresElectricBrakeController: true,
         status: 'ACTIVE',
         licensePlate: 'TRL004',
         province: 'ON'
@@ -197,9 +209,10 @@ async function main() {
       data: {
         serialNumber: 'UTL2021001',
         type: 'UTILITY',
-        requiredTowingCapacity: 1800,
-        requiredHitchClass: 'Class III',
-        hasBrakes: false,
+        requiredTowingCapacityKg: 1800,
+        requiredHitchClass: 3,
+        hasElectricBrakes: false,
+        requiresElectricBrakeController: false,
         status: 'MAINTENANCE',
         licensePlate: 'TRL005',
         province: 'ON'
@@ -209,9 +222,10 @@ async function main() {
       data: {
         serialNumber: 'SPC2024001',
         type: 'SPECIALTY',
-        requiredTowingCapacity: 6200,
-        requiredHitchClass: 'Class V',
-        hasBrakes: true,
+        requiredTowingCapacityKg: 6200,
+        requiredHitchClass: 5,
+        hasElectricBrakes: true,
+        requiresElectricBrakeController: true,
         status: 'ACTIVE',
         licensePlate: 'TRL006',
         province: 'ON'
@@ -232,7 +246,7 @@ async function main() {
         licenseNumber: 'T123456789012',
         licenseClass: 'AZ',
         licenseExpiry: new Date('2025-08-15'),
-        endorsements: ['Air Brakes', 'Dangerous Goods'],
+        endorsements: JSON.stringify(['Air Brakes', 'Dangerous Goods']),
         status: 'ACTIVE',
         province: 'ON'
       }
@@ -247,7 +261,7 @@ async function main() {
         licenseNumber: 'C987654321098',
         licenseClass: 'DZ',
         licenseExpiry: new Date('2025-11-22'),
-        endorsements: ['Air Brakes'],
+        endorsements: JSON.stringify(['Air Brakes']),
         status: 'ACTIVE',
         province: 'ON'
       }
@@ -262,7 +276,7 @@ async function main() {
         licenseNumber: 'R456789123456',
         licenseClass: 'G',
         licenseExpiry: new Date('2026-03-10'),
-        endorsements: [],
+        endorsements: JSON.stringify([]),
         status: 'ACTIVE',
         province: 'ON'
       }
@@ -277,7 +291,7 @@ async function main() {
         licenseNumber: 'M789123456789',
         licenseClass: 'DZ',
         licenseExpiry: new Date('2024-12-05'),
-        endorsements: ['Air Brakes', 'School Bus'],
+        endorsements: JSON.stringify(['Air Brakes', 'School Bus']),
         status: 'ACTIVE',
         province: 'ON'
       }
@@ -292,7 +306,7 @@ async function main() {
         licenseNumber: 'W321654987321',
         licenseClass: 'G',
         licenseExpiry: new Date('2025-06-18'),
-        endorsements: [],
+        endorsements: JSON.stringify([]),
         status: 'ACTIVE',
         province: 'ON'
       }
@@ -307,7 +321,7 @@ async function main() {
         licenseNumber: 'A654987321654',
         licenseClass: 'AZ',
         licenseExpiry: new Date('2025-09-30'),
-        endorsements: ['Air Brakes', 'Dangerous Goods', 'Crane Operator'],
+        endorsements: JSON.stringify(['Air Brakes', 'Dangerous Goods', 'Crane Operator']),
         status: 'ACTIVE',
         province: 'ON'
       }
@@ -322,7 +336,7 @@ async function main() {
         licenseNumber: 'T987321654987',
         licenseClass: 'G',
         licenseExpiry: new Date('2024-07-12'),
-        endorsements: [],
+        endorsements: JSON.stringify([]),
         status: 'ON_LEAVE',
         province: 'ON'
       }
@@ -337,7 +351,7 @@ async function main() {
         licenseNumber: 'B147258369147',
         licenseClass: 'DZ',
         licenseExpiry: new Date('2026-01-25'),
-        endorsements: ['Air Brakes'],
+        endorsements: JSON.stringify(['Air Brakes']),
         status: 'ACTIVE',
         province: 'ON'
       }
@@ -352,7 +366,7 @@ async function main() {
         licenseNumber: 'M258369147258',
         licenseClass: 'G',
         licenseExpiry: new Date('2025-04-08'),
-        endorsements: [],
+        endorsements: JSON.stringify([]),
         status: 'ACTIVE',
         province: 'ON'
       }
@@ -367,7 +381,7 @@ async function main() {
         licenseNumber: 'W369147258369',
         licenseClass: 'DZ',
         licenseExpiry: new Date('2025-12-14'),
-        endorsements: ['Air Brakes', 'Forklift'],
+        endorsements: JSON.stringify(['Air Brakes', 'Forklift']),
         status: 'ACTIVE',
         province: 'ON'
       }

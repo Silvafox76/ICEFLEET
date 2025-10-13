@@ -35,39 +35,12 @@ async function getFleetComplianceStatus(detailed: boolean) {
   // Fetch all fleet data
   const [vehicles, trailers, drivers, documents] = await Promise.all([
     prisma.vehicle.findMany({
-      where: { status: { not: 'RETIRED' } },
-      select: {
-        id: true,
-        make: true,
-        model: true,
-        licensePlate: true,
-        province: true,
-        status: true
-      }
+      where: { status: { not: 'RETIRED' } }
     }),
     prisma.trailer.findMany({
-      where: { status: { not: 'RETIRED' } },
-      select: {
-        id: true,
-        type: true,
-        serialNumber: true,
-        province: true,
-        status: true
-      }
+      where: { status: { not: 'RETIRED' } }
     }),
-    prisma.driver.findMany({
-      select: {
-        id: true,
-        employeeId: true,
-        firstName: true,
-        lastName: true,
-        licenseNumber: true,
-        licenseClass: true,
-        licenseExpiry: true,
-        status: true,
-        province: true
-      }
-    }),
+    prisma.driver.findMany(),
     prisma.complianceDocument.findMany({
       include: {
         vehicle: {
@@ -91,7 +64,7 @@ async function getFleetComplianceStatus(detailed: boolean) {
     })
   ]);
 
-  const complianceStatus = calculateComplianceStatus(vehicles, trailers, drivers, documents);
+  const complianceStatus = calculateComplianceStatus(vehicles as any, trailers as any, drivers as any, documents as any);
 
   if (!detailed) {
     return NextResponse.json(complianceStatus);
@@ -122,10 +95,10 @@ async function getFleetComplianceStatus(detailed: boolean) {
     );
 
     const provinceStatus = calculateComplianceStatus(
-      provinceVehicles, 
-      provinceTrailers, 
-      provinceDrivers, 
-      provinceDocuments
+      provinceVehicles as any,
+      provinceTrailers as any,
+      provinceDrivers as any,
+      provinceDocuments as any
     );
 
     provinceBreakdown.set(province, {
@@ -190,10 +163,10 @@ async function getAssetComplianceStatus(assetId: string, assetType: 'VEHICLE' | 
 
   // Calculate compliance for this specific asset
   const singleAssetCompliance = calculateComplianceStatus(
-    assetType === 'VEHICLE' ? [asset] : [],
-    assetType === 'TRAILER' ? [asset] : [],
-    assetType === 'DRIVER' ? [asset] : [],
-    assetType !== 'DRIVER' ? documents.map(d => ({ ...d, [assetType.toLowerCase()]: asset })) : []
+    assetType === 'VEHICLE' ? [asset] as any : [],
+    assetType === 'TRAILER' ? [asset] as any : [],
+    assetType === 'DRIVER' ? [asset] as any : [],
+    assetType !== 'DRIVER' ? documents.map(d => ({ ...d, [assetType.toLowerCase()]: asset })) as any : []
   );
 
   if (!detailed) {

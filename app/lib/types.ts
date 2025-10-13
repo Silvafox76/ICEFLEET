@@ -7,8 +7,9 @@ export interface Vehicle {
   model: string;
   year: number;
   licensePlate: string;
-  towingCapacity: number;
-  hitchClass: string;
+  towingCapacityKg: number | null;
+  hitchClass: number | null;
+  hasElectricBrakeController: boolean;
   status: 'ACTIVE' | 'MAINTENANCE' | 'OUT_OF_SERVICE' | 'RETIRED';
   odometer: number;
   fuelType: string;
@@ -21,9 +22,10 @@ export interface Trailer {
   id: string;
   serialNumber: string;
   type: 'ENCLOSED' | 'FLATBED' | 'UTILITY' | 'EQUIPMENT' | 'SPECIALTY';
-  requiredTowingCapacity: number;
-  requiredHitchClass: string;
-  hasBrakes: boolean;
+  requiredTowingCapacityKg: number | null;
+  requiredHitchClass: number | null;
+  hasElectricBrakes: boolean;
+  requiresElectricBrakeController: boolean;
   status: 'ACTIVE' | 'MAINTENANCE' | 'OUT_OF_SERVICE' | 'RETIRED';
   licensePlate?: string;
   province: string;
@@ -100,23 +102,42 @@ export interface MaintenanceRecord {
 }
 
 export interface DashboardStats {
-  totalVehicles: number;
-  totalTrailers: number;
-  totalDrivers: number;
-  activeAssignments: number;
-  complianceAlerts: number;
-  maintenanceOverdue: number;
-  vehicleUtilization: number;
+  fleet: {
+    totalVehicles: number;
+    activeVehicles: number;
+    inMaintenance: number;
+    totalTrailers: number;
+    totalDrivers: number;
+  };
+  compliance: {
+    compliant: number;
+    expiringSoon: number;
+    expired: number;
+    renewalsDue30Days: number;
+  };
+  maintenance: {
+    scheduled: number;
+    overdue: number;
+  };
+  utilization: {
+    averageUtilization: number;
+    vehiclesInUse: number;
+  };
 }
 
 export interface ComplianceAlert {
   id: string;
   type: string;
-  asset: string;
-  description: string;
+  entityType?: string;
+  entityId?: string;
+  entityName?: string;
+  documentNumber?: string;
+  asset?: string;
+  description?: string;
   expiryDate: Date;
   daysUntilExpiry: number;
-  status: 'green' | 'amber' | 'red';
+  status?: 'green' | 'amber' | 'red';
+  priority?: 'critical' | 'warning' | 'info';
 }
 
 // Canadian Provinces

@@ -325,7 +325,7 @@ function VehicleCard({ vehicle }: { vehicle: Vehicle }) {
           </div>
           <div className="flex items-center gap-1">
             <span className="font-medium">Towing:</span>
-            <span>{vehicle?.towingCapacity?.toLocaleString()} kg</span>
+            <span>{vehicle?.towingCapacityKg?.toLocaleString() ?? 'N/A'} kg</span>
           </div>
           <div className="flex items-center gap-1">
             <Gauge className="w-3 h-3" />
@@ -376,11 +376,11 @@ function TrailerCard({ trailer }: { trailer: Trailer }) {
           </div>
           <div className="flex items-center gap-1">
             <span className="font-medium">Required:</span>
-            <span>{trailer?.requiredTowingCapacity?.toLocaleString()} kg</span>
+            <span>{trailer?.requiredTowingCapacityKg?.toLocaleString() ?? 'N/A'} kg</span>
           </div>
           <div className="flex items-center gap-1">
             <span className="font-medium">Brakes:</span>
-            <span>{trailer?.hasBrakes ? 'Yes' : 'No'}</span>
+            <span>{trailer?.hasElectricBrakes ? 'Yes' : 'No'}</span>
           </div>
         </div>
       </div>

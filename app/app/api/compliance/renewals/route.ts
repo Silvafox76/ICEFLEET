@@ -40,16 +40,6 @@ export async function GET(request: Request) {
       prisma.driver.findMany({
         where: {
           status: 'ACTIVE'
-        },
-        select: {
-          id: true,
-          employeeId: true,
-          firstName: true,
-          lastName: true,
-          licenseNumber: true,
-          licenseClass: true,
-          licenseExpiry: true,
-          province: true
         }
       })
     ]);
@@ -57,16 +47,16 @@ export async function GET(request: Request) {
     switch (filter) {
       case 'timeline':
         // Return renewal timeline for planning
-        const timeline = getRenewalTimeline(documents, drivers);
+        const timeline = getRenewalTimeline(documents as any, drivers as any);
         return NextResponse.json(timeline);
 
       case 'critical':
         // Return only critical renewals (expired or expiring within 7 days)
-        const documentRenewals = generateDocumentRenewals(documents);
-        const licenseRenewals = generateDriverLicenseRenewals(drivers);
+        const documentRenewals = generateDocumentRenewals(documents as any);
+        const licenseRenewals = generateDriverLicenseRenewals(drivers as any);
         const allRenewals = [...documentRenewals, ...licenseRenewals];
-        
-        const criticalRenewals = allRenewals.filter(renewal => 
+
+        const criticalRenewals = allRenewals.filter(renewal =>
           renewal.daysUntilExpiry <= 7 || renewal.status === 'red'
         );
 
@@ -75,9 +65,9 @@ export async function GET(request: Request) {
       case 'upcoming':
       default:
         // Return all renewals within specified days (default 90)
-        const docRenewals = generateDocumentRenewals(documents);
-        const driverRenewals = generateDriverLicenseRenewals(drivers);
-        const upcomingRenewals = [...docRenewals, ...driverRenewals].filter(renewal => 
+        const docRenewals = generateDocumentRenewals(documents as any);
+        const driverRenewals = generateDriverLicenseRenewals(drivers as any);
+        const upcomingRenewals = [...docRenewals, ...driverRenewals].filter(renewal =>
           renewal.daysUntilExpiry <= days
         );
 

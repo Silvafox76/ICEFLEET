@@ -8,24 +8,28 @@ export async function GET() {
     const alerts = await getDbAlerts();
     return NextResponse.json({ alerts });
   } catch (error) {
-    // Use mock data if database unavailable
-    console.log('Using mock compliance alerts - database not available');
-    
-    const mockAlerts = mockComplianceDocuments
-      .filter(doc => doc.status === 'EXPIRING_SOON' || doc.status === 'EXPIRED')
-      .map(doc => ({
-        id: doc.id,
-        type: doc.type,
-        entityType: doc.vehicleId ? 'vehicle' : 'trailer',
-        entityId: doc.vehicleId || doc.trailerId,
-        documentNumber: doc.documentNumber,
-        expiryDate: doc.expiryDate,
-        status: doc.status,
-        daysUntilExpiry: Math.floor((doc.expiryDate.getTime() - Date.now()) / (1000 * 60 * 60 * 24)),
-        priority: doc.status === 'EXPIRED' ? 'critical' : 'warning'
-      }));
+    if (process.env.NODE_ENV !== 'production') {
+      // Use mock data if database unavailable in non-production
+      console.log('Using mock compliance alerts - database not available');
+      
+      const mockAlerts = mockComplianceDocuments
+        .filter(doc => doc.status === 'EXPIRING_SOON' || doc.status === 'EXPIRED')
+        .map(doc => ({
+          id: doc.id,
+          type: doc.type,
+          entityType: doc.vehicleId ? 'vehicle' : 'trailer',
+          entityId: doc.vehicleId || doc.trailerId,
+          documentNumber: doc.documentNumber,
+          expiryDate: doc.expiryDate,
+          status: doc.status,
+          daysUntilExpiry: Math.floor((doc.expiryDate.getTime() - Date.now()) / (1000 * 60 * 60 * 24)),
+          priority: doc.status === 'EXPIRED' ? 'critical' : 'warning'
+        }));
 
-    return NextResponse.json({ alerts: mockAlerts });
+      return NextResponse.json({ alerts: mockAlerts });
+    }
+    console.error('Compliance alerts error:', error);
+    return NextResponse.json({ error: 'Database unavailable' }, { status: 500 });
   }
 }
 
