@@ -6,8 +6,9 @@ FROM node:20-alpine AS deps
 RUN apk add --no-cache libc6-compat openssl
 WORKDIR /app
 
-# Copy package files
+# Copy package files and prisma schema for postinstall
 COPY app/package*.json ./
+COPY app/prisma ./prisma
 RUN npm ci --legacy-peer-deps
 
 # Stage 2: Builder
