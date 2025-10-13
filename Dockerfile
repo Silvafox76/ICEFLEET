@@ -6,9 +6,13 @@ FROM node:20-alpine AS deps
 RUN apk add --no-cache libc6-compat openssl
 WORKDIR /app
 
-# Copy package files and prisma schema for postinstall
+# Copy package files first
 COPY app/package*.json ./
+
+# Copy prisma schema BEFORE npm ci (needed for postinstall hook)
 COPY app/prisma ./prisma
+
+# Install dependencies (postinstall will run prisma generate)
 RUN npm ci --legacy-peer-deps
 
 # Stage 2: Builder
