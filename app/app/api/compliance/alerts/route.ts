@@ -58,7 +58,7 @@ async function getDbAlerts() {
     }
   });
 
-  return documents.map(doc => ({
+  return documents.map((doc: any) => ({
     id: doc.id,
     type: doc.type,
     entityType: doc.vehicleId ? 'vehicle' : 'trailer',

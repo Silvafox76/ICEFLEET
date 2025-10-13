@@ -28,7 +28,7 @@ export async function GET() {
     });
 
     // Parse endorsements JSON string for each driver
-    const driversWithParsedEndorsements = drivers.map(driver => ({
+    const driversWithParsedEndorsements = drivers.map((driver: any) => ({
       ...driver,
       endorsements: typeof driver.endorsements === 'string' 
         ? JSON.parse(driver.endorsements) 

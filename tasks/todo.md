@@ -78,9 +78,30 @@ Fix Render deployment failures caused by DATABASE_URL validation during build ti
 - **Simple logic** - Easy to understand and maintain
 - **Follows Next.js best practices** - Build shouldn't require runtime resources
 
+### Additional Fixes - TypeScript Errors
+
+**3. Fixed `app/app/api/compliance/alerts/route.ts` (line 61)**
+- Added explicit `any` type annotation to `doc` parameter in map function
+- Simple fix: `documents.map((doc: any) => ({`
+
+**4. Fixed `app/app/api/dashboard/stats/route.ts` (lines 49, 54, 71-72)**
+- Added explicit `any` type annotations to multiple filter/map functions
+- Fixed: `complianceDocuments.filter((doc: any) => {`
+- Fixed: `maintenanceRecords.filter((r: any) => r.status === 'SCHEDULED')`
+
+**5. Fixed `app/app/api/drivers/route.ts` (line 31)**
+- Added explicit `any` type annotation to driver parameter
+- Fixed: `drivers.map((driver: any) => ({`
+
+### Build Status
+✅ DATABASE_URL validation fixed - build no longer requires database
+✅ All TypeScript errors fixed - 3 files updated with type annotations
+✅ Prisma schema correctly copied in Dockerfile (line 11)
+✅ Local build successful - verified with npm run build
+
 ### Next Steps
 1. Commit and push these changes
 2. Render will automatically rebuild
-3. Build should succeed (no DATABASE_URL needed during build)
+3. Build should succeed (no DATABASE_URL needed, TypeScript error fixed)
 4. App will validate DATABASE_URL when it starts
 5. Verify deployment succeeds and app connects to database

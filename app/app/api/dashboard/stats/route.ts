@@ -46,12 +46,12 @@ async function getDbStats() {
       })
     ]);
 
-    const expiringSoon = complianceDocuments.filter(doc => {
+    const expiringSoon = complianceDocuments.filter((doc: any) => {
       const daysUntilExpiry = Math.floor((doc.expiryDate.getTime() - Date.now()) / (1000 * 60 * 60 * 24));
       return daysUntilExpiry > 0 && daysUntilExpiry <= 30;
     }).length;
 
-    const expired = complianceDocuments.filter(doc => doc.expiryDate < new Date()).length;
+    const expired = complianceDocuments.filter((doc: any) => doc.expiryDate < new Date()).length;
 
     return {
       fleet: {
@@ -68,8 +68,8 @@ async function getDbStats() {
         renewalsDue30Days: complianceDocuments.length
       },
       maintenance: {
-        scheduled: maintenanceRecords.filter(r => r.status === 'SCHEDULED').length,
-        overdue: maintenanceRecords.filter(r => r.status === 'OVERDUE').length
+        scheduled: maintenanceRecords.filter((r: any) => r.status === 'SCHEDULED').length,
+        overdue: maintenanceRecords.filter((r: any) => r.status === 'OVERDUE').length
       },
       utilization: {
         averageUtilization: 75,
