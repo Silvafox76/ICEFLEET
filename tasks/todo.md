@@ -1,115 +1,86 @@
-# Input Validation and API Utilities - ICE FLEET
+# Render Deployment Fix - ICE FLEET
 
 ## Task Overview
-Create Zod validation schemas and API helper utilities for input validation across all API routes.
+Fix Render deployment failures caused by DATABASE_URL validation during build time.
 
-## Plan
+## Root Cause Analysis
 
-### Files to Create
+**Problem:** The application is throwing `DATABASE_URL is required in production environment` during the Next.js build phase.
 
-- [ ] Create `app/lib/api/api-response.ts` - Standardized API response helpers
-- [ ] Create `app/lib/validations/vehicle.validation.ts` - Vehicle validation schema
-- [ ] Create `app/lib/validations/trailer.validation.ts` - Trailer validation schema
-- [ ] Create `app/lib/validations/driver.validation.ts` - Driver validation schema
-- [ ] Create `app/lib/validations/assignment.validation.ts` - Assignment validation schema
-- [ ] Create `app/lib/validations/maintenance.validation.ts` - Maintenance record validation schema
-- [ ] Create `app/lib/validations/compliance.validation.ts` - Compliance document validation schema
+**Why:**
+- Next.js build process imports all API routes during `next build`
+- When routes are imported, `app/lib/db.ts` is executed
+- The validation logic in db.ts runs during build time
+- The `NEXT_PHASE` check isn't working because `process.env.NEXT_PHASE` isn't available in all contexts
 
-## Details
+**Solution:** Skip DATABASE_URL validation entirely during build time, only validate at runtime.
 
-### API Response Helpers (api-response.ts)
-- Create standardized success/error response functions
-- Include validation error helper
-- Keep simple with proper typing
+## Implementation Plan
 
-### Validation Schemas
-Each schema should:
-- Use Zod for type-safe validation
-- Follow existing database schema from types.ts
-- Include both create and update variants (partial)
-- Handle optional fields correctly
-- Validate Canadian provinces
-- Validate enums (status, type, etc.)
-- Keep simple and focused
+### Step 1: Fix Database Connection Logic
+- [x] Update `app/lib/db.ts` to skip validation during build
+- [x] Use a simpler check that works reliably
+- [x] Ensure PrismaClient is only instantiated when DATABASE_URL exists
 
-### Key Validations Required
+### Step 2: Add Build-Time Environment Variable
+- [x] Add `SKIP_ENV_VALIDATION=true` to Dockerfile build stage
+- [x] This ensures build succeeds without DATABASE_URL
 
-**Vehicle Schema:**
-- VIN: 17 characters exactly
-- Make/Model: Required strings
-- Year: Integer between 1990 and current year + 1
-- License plate: Required
-- Towing capacity: Optional positive integer
-- Hitch class: Optional integer 1-5
-- Has electric brake controller: Optional boolean
-- Fuel type: Required string
-- Province: Canadian province enum
-- Odometer: Optional positive integer
-- Status: Enum (ACTIVE, MAINTENANCE, OUT_OF_SERVICE, RETIRED)
+### Step 3: Test the Fix
+- [ ] Verify Docker build works locally (ready for user to test)
+- [ ] Confirm app starts and connects to database at runtime
 
-**Trailer Schema:**
-- Serial number: Required string
-- Type: Enum (ENCLOSED, FLATBED, UTILITY, EQUIPMENT, SPECIALTY)
-- Required towing capacity: Positive integer
-- Required hitch class: Integer 1-5
-- Has brakes: Boolean
-- License plate: Optional string
-- Province: Canadian province enum
-- Status: Enum (ACTIVE, MAINTENANCE, OUT_OF_SERVICE, RETIRED)
+### Step 4: Deploy to Render
+- [ ] Push changes to repository
+- [ ] Trigger Render deployment
+- [ ] Verify successful deployment
 
-**Driver Schema:**
-- Employee ID: Required string
-- First/Last name: Required strings
-- Email: Valid email format
-- Phone: Required string (Canadian format validation)
-- License number: Required string
-- License class: Required string
-- License expiry: Future date
-- Endorsements: Array of strings
-- Province: Canadian province enum
-- Status: Enum (ACTIVE, INACTIVE, ON_LEAVE, TERMINATED)
+## Changes to Make
 
-**Assignment Schema:**
-- Job number: Required string
-- Description: Required string
-- Location: Required string
-- Start date: Required date
-- End date: Optional date (must be after start date)
-- Lead driver ID: Required string
-- Vehicle ID: Optional string
-- Trailer ID: Optional string
-- Priority: Enum (LOW, MEDIUM, HIGH, CRITICAL)
-- Estimated hours: Optional positive number
-- Status: Enum (SCHEDULED, IN_PROGRESS, COMPLETED, CANCELLED, ON_HOLD)
+### File: `app/lib/db.ts`
+**Change:** Simplify validation to only run when actually executing (not during build)
 
-**Maintenance Record Schema:**
-- Type: Enum (PREVENTIVE, CORRECTIVE, EMERGENCY, INSPECTION, RECALL)
-- Description: Required string
-- Scheduled date: Optional date
-- Completed date: Optional date
-- Odometer: Optional positive integer
-- Cost: Optional positive decimal
-- Vehicle ID or Trailer ID: At least one required
-- Service provider: Optional string
-- Work order number: Optional string
-- Notes: Optional string
-- Status: Enum (SCHEDULED, IN_PROGRESS, COMPLETED, CANCELLED, OVERDUE)
-
-**Compliance Document Schema:**
-- Type: Enum (INSURANCE, REGISTRATION, INSPECTION, COMMERCIAL_PERMIT, SPECIAL_PERMIT)
-- Document number: Required string
-- Issue date: Required date
-- Expiry date: Required date (must be after issue date)
-- Vehicle ID or Trailer ID: At least one required
-- Notes: Optional string
-- Cloud storage path: Optional string
-- Status: Enum (VALID, EXPIRED, EXPIRING_SOON, SUSPENDED, CANCELLED)
-
-## Implementation Approach
-1. Create API response helpers first (foundation)
-2. Create each validation schema file (one at a time)
-3. Keep each file simple and focused
-4. Export both create and update schemas from each file
+### File: `Dockerfile`
+**Change:** Add `SKIP_ENV_VALIDATION=true` during build step
 
 ## Review Section
-(To be completed after implementation)
+
+### Changes Applied ✓
+
+**1. Fixed `app/lib/db.ts` (app/lib/db.ts:10-21)**
+- Added `isBuildTime` check that detects build phase using two methods:
+  - `SKIP_ENV_VALIDATION` environment variable
+  - `npm_lifecycle_event === 'build'` detection
+- Modified validation to skip during build time
+- Added conditional PrismaClient instantiation to avoid creating client during build
+
+**2. Updated `Dockerfile` (Dockerfile:27)**
+- Added `ENV SKIP_ENV_VALIDATION true` before the build command
+- This ensures the build phase knows to skip DATABASE_URL validation
+
+### How It Works
+
+**During Build:**
+- `SKIP_ENV_VALIDATION=true` is set in Dockerfile
+- Database validation is skipped
+- PrismaClient is created without error (it won't be used during build)
+- Next.js build completes successfully
+
+**At Runtime:**
+- `SKIP_ENV_VALIDATION` is not set
+- Validation runs and checks for DATABASE_URL
+- If missing, throws clear error message
+- If present, connects to database normally
+
+### Impact
+- **Zero production risk** - Validation still runs at runtime
+- **Minimal code changes** - Only touched 2 files
+- **Simple logic** - Easy to understand and maintain
+- **Follows Next.js best practices** - Build shouldn't require runtime resources
+
+### Next Steps
+1. Commit and push these changes
+2. Render will automatically rebuild
+3. Build should succeed (no DATABASE_URL needed during build)
+4. App will validate DATABASE_URL when it starts
+5. Verify deployment succeeds and app connects to database

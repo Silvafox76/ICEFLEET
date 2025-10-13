@@ -24,6 +24,7 @@ RUN npx prisma generate
 
 # Build Next.js application
 ENV NEXT_TELEMETRY_DISABLED 1
+ENV SKIP_ENV_VALIDATION true
 RUN npm run build
 
 # Stage 3: Runner
