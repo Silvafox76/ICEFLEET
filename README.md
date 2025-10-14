@@ -2,11 +2,11 @@
 
 <div align="center">
 
-## 🚀 Deploy in 2 Minutes! (Live Now!)
+## 🚀 Deploy to Railway!
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/Silvafox76/ICEFLEET&env=DATABASE_URL&envDescription=Just%20need%20a%20PostgreSQL%20database%20URL&project-name=ice-fleet&repository-name=ice-fleet)
+See [Railway Deployment Guide](docs/RAILWAY_DEPLOYMENT.md) for deployment instructions.
 
-**👆 Click to deploy instantly! Auto-deploys on every GitHub push.**
+**Auto-deploys on every GitHub push to Railway.**
 
 ---
 
@@ -21,7 +21,7 @@
 
 **Part of the comprehensive Ice Mitigation Services technology stack serving Whitby, Ontario and the Greater Toronto Area**
 
-[Quick Deploy](DEPLOY_NOW.md) · [ICEHUB Overview](#icehub-ecosystem) · [Features](#features) · [Documentation](#documentation)
+[Railway Deploy](docs/RAILWAY_DEPLOYMENT.md) · [ICEHUB Overview](#icehub-ecosystem) · [Features](#features) · [Documentation](#documentation)
 
 </div>
 
