@@ -6,4 +6,4 @@ echo "Running database migrations..."
 npx prisma migrate deploy || echo "Warning: Migrations failed or no migrations to apply"
 
 echo "Starting application..."
-exec node server.js
+exec node app/server.js
