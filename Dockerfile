@@ -6,11 +6,8 @@ FROM node:20-alpine AS deps
 RUN apk add --no-cache libc6-compat openssl
 WORKDIR /app
 
-# Copy package files first
-COPY app/package*.json ./
-
-# Copy prisma schema BEFORE npm ci (needed for postinstall hook)
-COPY app/prisma ./prisma
+# Copy the entire app directory structure to maintain correct paths
+COPY app/ ./
 
 # Install dependencies (postinstall will run prisma generate)
 RUN npm ci --legacy-peer-deps
@@ -19,12 +16,8 @@ RUN npm ci --legacy-peer-deps
 FROM node:20-alpine AS builder
 WORKDIR /app
 
-# Copy dependencies from deps stage
-COPY --from=deps /app/node_modules ./node_modules
-COPY app/ ./
-
-# Generate Prisma Client
-RUN npx prisma generate
+# Copy dependencies and source from deps stage
+COPY --from=deps /app ./
 
 # Build Next.js application
 ENV NEXT_TELEMETRY_DISABLED 1
