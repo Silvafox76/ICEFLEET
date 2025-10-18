@@ -45,9 +45,9 @@ COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
 COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.prisma ./node_modules/.prisma
 
-# CRITICAL: Copy CSS and server files for proper styling
-COPY --from=builder --chown=nextjs:nodejs /app/.next/server ./server
-COPY --from=builder --chown=nextjs:nodejs /app/.next/cache ./cache
+# Copy startup script
+COPY --chown=nextjs:nodejs start.sh ./
+RUN chmod +x start.sh
 
 USER nextjs
 
@@ -56,4 +56,4 @@ EXPOSE 3000
 ENV PORT 3000
 ENV HOSTNAME "0.0.0.0"
 
-CMD ["node", "server.js"]
+CMD ["./start.sh"]
