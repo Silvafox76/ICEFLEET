@@ -6,18 +6,23 @@ FROM node:20-alpine AS deps
 RUN apk add --no-cache libc6-compat openssl
 WORKDIR /app
 
-# Copy the entire app directory structure to maintain correct paths
-COPY app/ ./
+# Copy package files
+COPY app/package*.json ./
+COPY app/prisma ./prisma/
 
-# Install dependencies (postinstall will run prisma generate)
+# Install dependencies
 RUN npm ci --legacy-peer-deps
 
 # Stage 2: Builder
 FROM node:20-alpine AS builder
 WORKDIR /app
 
-# Copy dependencies and source from deps stage
-COPY --from=deps /app ./
+# Copy dependencies from deps stage
+COPY --from=deps /app/node_modules ./node_modules
+COPY --from=deps /app/prisma ./prisma
+
+# Copy source code
+COPY app/ ./
 
 # Build Next.js application
 ENV NEXT_TELEMETRY_DISABLED 1
@@ -34,16 +39,16 @@ ENV NEXT_TELEMETRY_DISABLED 1
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-# Copy necessary files from builder
+# Copy the standalone output
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+COPY --from=builder --chown=nextjs:nodejs /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
 COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.prisma ./node_modules/.prisma
-COPY --from=builder --chown=nextjs:nodejs /app/node_modules ./node_modules
 
-# Copy startup script
-COPY --chown=nextjs:nodejs start.sh ./
-RUN chmod +x start.sh
+# CRITICAL: Copy CSS and server files for proper styling
+COPY --from=builder --chown=nextjs:nodejs /app/.next/server ./server
+COPY --from=builder --chown=nextjs:nodejs /app/.next/cache ./cache
 
 USER nextjs
 
@@ -52,4 +57,4 @@ EXPOSE 3000
 ENV PORT 3000
 ENV HOSTNAME "0.0.0.0"
 
-CMD ["./start.sh"]
+CMD ["node", "server.js"]
