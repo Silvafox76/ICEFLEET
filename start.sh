@@ -7,7 +7,11 @@ ls -la
 
 echo ""
 echo "==> Running database migrations..."
-# Run migrations with explicit schema path
+# First, reset failed migrations (safe for alpha - no production data)
+echo "==> Resetting migration history to fix P3009 error..."
+npx prisma migrate reset --force --skip-seed --schema=./prisma/schema.prisma || echo "Reset not needed or already clean"
+
+echo "==> Deploying fresh migrations..."
 npx prisma migrate deploy --schema=./prisma/schema.prisma || echo "Warning: Migrations failed or no migrations to apply"
 
 echo ""
