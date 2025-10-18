@@ -92,10 +92,14 @@ The service will automatically redeploy with the new environment variable.
 If you prefer to keep using Railway PostgreSQL from Render, you can set:
 
 ```
-DATABASE_URL=postgresql://postgres:kWpeMxCpYvRWGaZwTIfjCbtVVOumBSTf@hopper.proxy.rlwy.net:32919/railway
+DATABASE_URL=postgresql://username:password@host:port/database
 ```
 
+**Example format:** `postgresql://postgres:YOUR_PASSWORD@hopper.proxy.rlwy.net:PORT/railway`
+
 **Note:** This will work but will have higher latency since data travels between Railway and Render.
+
+**Security Warning:** ⚠️ Never commit actual database credentials to git. Always use environment variables.
 
 ---
 
