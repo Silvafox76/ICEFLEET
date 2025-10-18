@@ -15,10 +15,10 @@ services:
   # Web Service (Next.js Application)
   - type: web
     name: icefleet-app
-    env: docker
+    env: node
     plan: starter  # Change to 'free' for testing, 'starter' for production
-    dockerfilePath: ./Dockerfile
-    dockerContext: .
+    buildCommand: cd app && npm ci --legacy-peer-deps && npx prisma generate && npm run build
+    startCommand: cd app && npx prisma migrate deploy && npm start
     region: oregon  # Choose: oregon, frankfurt, singapore, ohio
 
     # Health check configuration
