@@ -2,11 +2,14 @@
 
 <div align="center">
 
-## 🚀 Deploy to Railway!
+## 🚀 Live Production Deployment
 
-See [Railway Deployment Guide](docs/RAILWAY_DEPLOYMENT.md) for deployment instructions.
+**Production URL:** https://icefleet-production.up.railway.app
 
-**Auto-deploys on every GitHub push to Railway.**
+[![Deployment Status](https://img.shields.io/badge/Railway-Deployed-success?style=for-the-badge&logo=railway&logoColor=white)](https://icefleet-production.up.railway.app)
+[![Health Check](https://img.shields.io/badge/Health-Passing-success?style=for-the-badge&logo=check-circle&logoColor=white)](https://icefleet-production.up.railway.app/api/health)
+
+**Auto-deploys on every GitHub push to Railway** · [Deployment Guide](docs/RAILWAY_DEPLOYMENT.md)
 
 ---
 
@@ -294,9 +297,32 @@ npm run test:e2e          # Full ICEHUB flow testing
 
 ## 🚢 Deployment
 
-ICE FLEET is designed to be deployed alongside other ICEHUB modules:
+### 🌐 Production Deployment (Railway)
 
-### Docker Compose (Recommended)
+**Current Production Environment:**
+- **Platform:** Railway
+- **URL:** https://icefleet-production.up.railway.app
+- **Database:** PostgreSQL (Railway Managed)
+- **Auto-Deploy:** Enabled on `master` branch push
+- **Region:** US East
+- **Status:** ✅ Active
+
+**Production Stack:**
+- Next.js 14.2.32 (Standalone Mode)
+- Node.js 20.19.5
+- PostgreSQL 14
+- Docker (Alpine Linux)
+
+**Deployment Features:**
+- ✅ Automatic database migrations on deploy
+- ✅ Zero-downtime deployments
+- ✅ Health check monitoring
+- ✅ SSL/HTTPS enabled
+- ✅ Auto-scaling support
+
+See [Railway Deployment Guide](docs/RAILWAY_DEPLOYMENT.md) for detailed deployment instructions.
+
+### Docker Compose (Alternative)
 ```yaml
 version: '3.8'
 services:
