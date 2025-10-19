@@ -39,15 +39,15 @@ ENV NEXT_TELEMETRY_DISABLED 1
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
 
-# Copy necessary files from builder
-COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
+# Copy the standalone server to root
+COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone/app ./
+
+# Copy static files to the correct location for standalone server
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
+
+# Copy Prisma files
 COPY --from=builder --chown=nextjs:nodejs /app/prisma ./prisma
 COPY --from=builder --chown=nextjs:nodejs /app/node_modules/.prisma ./node_modules/.prisma
-
-# Copy startup script
-COPY --chown=nextjs:nodejs start.sh ./
-RUN chmod +x start.sh
 
 USER nextjs
 
@@ -56,4 +56,4 @@ EXPOSE 3000
 ENV PORT 3000
 ENV HOSTNAME "0.0.0.0"
 
-CMD ["./start.sh"]
+CMD ["node", "server.js"]
